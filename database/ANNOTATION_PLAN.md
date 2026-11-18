@@ -1,12 +1,12 @@
 # First annotation and evaluation plan
 
-The corpus has 26 candidate papers. **No full-paper rhetorical annotations have been completed yet.** This document records a split that avoids evaluation leakage.
+The corpus has 26 candidate papers. **One paper now has a first draft of source-located rhetorical annotations; it is not yet human-reviewed or available to the reviewed exemplar retriever.** This document records a split that avoids evaluation leakage.
 
 ## Annotation queue: six papers, one per meeting
 
 | Paper ID | Primary training objective |
 | --- | --- |
-| `cvpr2024-mip-splatting` | Concrete visual failure -> technical cause -> anti-aliasing mechanism |
+| `cvpr2024-mip-splatting` | Concrete visual failure -> technical cause -> anti-aliasing mechanism. **29 draft annotations filed; human review pending.** |
 | `cvpr2025-vggt` | Unifying multiple geometry tasks in one method narrative |
 | `eccv2024-minimalist-vision` | From a surprising imaging principle to demonstrated applications |
 | `eccv2026-heat-kernel-textures` | Representation limitations -> intrinsic geometry-aware alternative |
@@ -36,3 +36,9 @@ For each: read the paper, annotate Abstract **sentence roles**, Introduction **p
 2. Compare an unmodified baseline agent and this Skill using **identical** brief and model conditions.
 3. Score claim fidelity, specificity of gap, mechanism clarity, correctness of comparisons, CV-relevant experimental reasoning, figure planning, and provenance.
 4. Run blind human assessment and record errors; do not reward copying source paper sentences.
+
+## First completed draft
+
+- `cvpr2024-mip-splatting`: see `database/annotations/cvpr2024-mip-splatting.jsonl` and `references/exemplars/cards/mip-splatting.md`.
+- Five remaining queue papers have no full-text annotation. All six hold-outs remain untouched.
+- Reviewing the Mip-Splatting annotation requires checking every source location and resolving uncertain interpretations; only then change status to `reviewed`.

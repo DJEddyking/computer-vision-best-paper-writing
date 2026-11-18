@@ -33,3 +33,16 @@ A validated annotation entry should include `section` (e.g. introduction), `rhet
 - Use a Git commit/PR for traceable changes. Keep held-out evaluation papers excluded from exemplar retrieval and style-calibration scripts.
 - Treat unknown presentation classes as `null`, not `Poster` or `Oral`.
 - Do not turn unverified author/user-provided claims into official verified fields without checked evidence.
+
+## Source-located annotation files
+
+Annotations may be kept in an external `database/annotations/<paper_id>.jsonl` file while they are being reviewed. A curated paper can set `annotation_file` and `annotation_card` to point to this file and a human-readable commentary card. `annotation_version` tracks draft revisions. `annotation_status=in_progress` **must not** pass the `search --reviewed-only` filter.
+
+For each source-located annotation we store:
+- `annotation_id`, `paper_id`, `section`
+- `source_location` (PDF page, section and sentence/paragraph/figure identifier)
+- `source_url` (paper URL)
+- `rhetorical_move`, `content_summary_zh`, `writing_analysis_zh`
+- `review_status`: `draft` until a human validates claims, locations and interpretation.
+
+An external draft annotation is *not* automatically a model-approved writing exemplar; keep its review lifecycle separate from the metadata record. No copied paragraph text or inaccessible PDF is committed.
