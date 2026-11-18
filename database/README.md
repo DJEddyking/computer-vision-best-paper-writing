@@ -19,7 +19,7 @@ This database contains **26 shortlisted main-conference papers** across CVPR 202
 - **Award labels and titles** were checked against the official CVPR award announcements, ECCV 2024 Awards, ICCV TCPAMI awards, and ECCV 2026 accepted-paper award badges. ECCV 2026 LSRM honorable mention is checked against an author's page; its record is marked `author_confirmed`.
 - **Paper links** tagged `official_award_pdf_link` or `official_oral_page` are directly linked by official pages. Links tagged `unverified_cvf_html` are plausible CVF Open Access paths **not independently fetch-verified** (the Open Access site returned access restrictions in this check). Author project pages are marked `author_project_page`, not confused with official proceedings.
 - Award identity and display format are separate: papers with a best-paper award may also be displayed in poster sessions. `presentation: null` means the format was not independently verified.
-- `annotation_status: not_started` is deliberate. We have **not** read/annotated the full papers. Selection rationale and `writing_focus` are *proposed study angles*, not empirically learned style rules.
+- `annotation_status: not_started` is deliberate. The Mip-Splatting author PDF has now been read for a first, source-located annotation draft, but it is **not yet human-reviewed**; the other 25 candidate papers have not undergone full-text annotation. Selection rationale and `writing_focus` are *proposed study angles*, not empirically learned style rules.
 
 ## Files
 
@@ -27,7 +27,8 @@ This database contains **26 shortlisted main-conference papers** across CVPR 202
 - `user_papers.jsonl` — an initially empty file for user-added records.
 - `SCHEMA.md` — database schema, verification semantics, deduplication rules.
 - `ANNOTATION_PLAN.md` — six papers to annotate first, six strict hold-outs, remaining backlog.
-- `../scripts/manage_papers.py` — add, update, list, search and validate without network access.
+- `../scripts/manage_papers.py` — add, update, search and validate without network access.
+- `annotations/cvpr2024-mip-splatting.jsonl` — 29 draft rhetorical annotations with PDF source locations (excluded from reviewed exemplar retrieval).
 
 ## Provenance sources
 
