@@ -8,7 +8,7 @@ description: >
   clear visual reasoning, and venue-appropriate presentation.
 ---
 
-# Computer Vision Paper Writing (v0.1)
+# Computer Vision Paper Writing (v0.2)
 
 ## Purpose and scope
 
@@ -116,6 +116,33 @@ Check the following:
 
 For every serious issue, identify the location, reason, severity, and actionable revision.
 
+## Curated paper database (2023–2026 seed)
+
+The repository includes a *candidate corpus*, not a fully annotated writing knowledge base:
+
+- `database/curated_papers.jsonl`: 26 shortlisted, award-recognized CVPR 2024/2025, ECCV 2024/2026 and ICCV 2023/2025 papers, with source URLs and verification status.
+- `database/user_papers.jsonl`: user-managed records; additions and updates must never silently override curated entries.
+- `database/SCHEMA.md`: record fields, provenance, annotation and deduplication policy.
+- `database/ANNOTATION_PLAN.md`: six initial annotation candidates, six **held-out** evaluation papers and fourteen backlog candidates.
+- `scripts/manage_papers.py`: local `validate`, `search`, `add` and `update` commands (see `scripts/README.md`).
+
+### Source and retrieval policy
+
+1. When asked about paper examples, use paper title, award, venue, year and source URL from the database. Respect individual `recognition_verification` and `paper_link_status` fields. An award-verification source is **not** evidence that the full PDF has been read.
+2. **Only use reviewed rhetorical annotations as writing exemplars.** For exemplar retrieval, run `python3 scripts/manage_papers.py search --reviewed-only --json` or apply the same filter manually. At the initial seed stage, there are no reviewed exemplar annotations; do not pretend otherwise.
+3. Never use papers in `corpus_split=held_out` for exemplar retrieval, rule derivation or style-statistic tuning. Held-outs are for independent evaluation.
+4. Treat `writing_focus` and `selection_reason` as proposed study angles, **not** verified paper-level annotations.
+5. Trace writing advice to paper ID, venue/year, section, source location and an original analytical note once these have been checked. **Style inspiration is not scientific evidence** for manuscript claims.
+6. Keep full paper PDFs out of the public repository unless explicitly authorized to distribute them. Avoid copying distinctive source prose into the generated manuscript.
+
+### User paper database operations
+
+- Add: accept a title, venue, year and optional paper URL or DOI in a local JSON file, then use `python3 scripts/manage_papers.py add --file <path.json>`.
+- Update: use `python3 scripts/manage_papers.py update <user-paper-id> --file <patch.json>`; this cannot silently alter curated records.
+- Search: use `python3 scripts/manage_papers.py search --venue CVPR --year 2024` or filter by task; held-out evaluation examples are excluded by default.
+- Validate: run `python3 scripts/manage_papers.py validate` after changes. Do not mark user-supplied awards as officially verified without independently checked primary evidence.
+- Local database updates require a separate Git commit/push for remote persistence. These CLI commands do not perform network requests.
+
 ## Output contract
 
 When **drafting**, return:
@@ -137,9 +164,9 @@ Use Chinese for explanations when the user communicates in Chinese, but default 
 
 ## Optional future extensions
 
-This v0.1 skill is fully usable with **only this `SKILL.md`**. Do not reference missing files as if they already exist. Add these components only after collecting and testing CV-specific evidence:
+This v0.2 skill includes a first verified-metadata candidate database and a user-library CLI, but **no reviewed full-paper rhetorical annotations**. Keep the following as future extensions:
 
-- `references/`: venue/year requirements, labeled CV-paper patterns, section rules, example analysis.
-- `scripts/`: exemplar retrieval, citation/LaTeX checks, draft diagnostics, figure/table checks.
+- `references/`: venue/year requirements, verified CV-paper rhetorical patterns, section rules, and full-paper analysis.
+- `scripts/`: after the existing database manager, add reviewed-exemplar retrieval, citation/LaTeX checks, draft diagnostics, and figure/table checks.
 - `assets/`: evidence-map templates, figure-planning templates, output examples.
-- `evals/`: held-out papers and blind-review rubrics for testing improvements over a baseline agent.
+- `evals/`: evaluation case briefs for held-out papers and blind-review rubrics for comparison with a baseline agent.
